@@ -6,7 +6,7 @@ Gazebo ROS packages for the simulation used in our final year project.
 ## Robot Platform
 
 For the two-wheeled self-balancing platform, the openly
-available [Robosavvy](http://wiki.ros.org/rsv_balance_gazebo) platform was used ([download here](http://wiki.ros.org/RoboSavvy/RoboSavvy-Balance/Tutorials/Simulation%20Setup%20and%20Install)). This platform
+available [Robosavvy](http://wiki.ros.org/Robots/RoboSavvy-Balance) platform was used. This platform
 contained the 3D model of the platform and the ability to give
 velocity commands as a ROS message. This model was
 modified in order to match the design of the personal
