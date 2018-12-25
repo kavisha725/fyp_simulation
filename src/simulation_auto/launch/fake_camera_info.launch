@@ -1,0 +1,8 @@
+<launch>
+
+  <node pkg="simulation_auto" name="depth_info" type="depth_info">
+    <remap from="/camera/depth/camera_info" to="/camera/depth/camera_info"/>
+
+  </node>
+
+</launch>

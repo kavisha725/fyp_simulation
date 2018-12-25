@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<robot name="rsv_balance" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find rsv_balance_description)/urdf/robot.urdf.xacro" />
+  
+  <!-- Common Gazebo definitions and configurations for the platform's base -->
+  <xacro:include filename="$(find rsv_balance_gazebo)/urdf/balance.gazebo.xacro" />
+
+  <xacro:property name="camera_name" value="camera1" />  
+
+  <gazebo reference="rod_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+  
+  <gazebo reference="weight_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  
+  
+  <gazebo>
+    <plugin name="rsv_balance_controller" filename="libgazebo_rsv_balance.so">
+      <!-- ROS node configurations -->
+<!--  <rosDebugLevel>Debug</rosDebugLevel> -->
+<!--  <robotNamespace></robotNamespace> -->
+      <commandTopic>cmd_vel</commandTopic>
+      <baseFrameId>base_link</baseFrameId>
+      <publishOdomTF>true</publishOdomTF>
+      <odomFrameId>odom</odomFrameId>
+      <odomSource>world</odomSource>
+      <odomTopic>odom</odomTopic>
+      <publishWheelJointState>true</publishWheelJointState>
+      <!-- Platform specific configurations -->
+      <startMode>balance</startMode>
+      <publishState>true</publishState>
+      <publishStateRate>1</publishStateRate>
+      <publishDiagnosticsRate>1</publishDiagnosticsRate>
+      <wheelSeparation>${base_width+2.*wheel_width/2.}</wheelSeparation>
+      <wheelRadius>${wheel_radius}</wheelRadius>
+      <leftJoint>base_to_left_wheel</leftJoint>
+      <rightJoint>base_to_right_wheel</rightJoint>   
+      <!-- Control specific configurations -->
+      <updateRate>100</updateRate>
+    </plugin>
+  </gazebo>
+
+  <!-- camera -->
+  <gazebo reference="camera_link">
+    <sensor name="camera" type="depth">
+        <update_rate>20</update_rate>
+        <camera>
+          <horizontal_fov>1.047198</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>10</far>
+          </clip>
+        </camera>
+        <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <!-- Keep this zero, update_rate in the parent <sensor> tag
+            will control the frame rate. -->
+          <updateRate>0.0</updateRate>
+          <cameraName>camera_ir</cameraName>
+          <imageTopicName>/camera/rgb/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/rgb/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/camera/depth/camera_info</depthImageInfoTopicName>
+          <!--depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName-->
+          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+          <frameName>camera_depth_link</frameName>
+          <pointCloudCutoff>0.05</pointCloudCutoff>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+      </sensor>
+  </gazebo>  
+</robot>

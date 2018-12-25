@@ -1,0 +1,21 @@
+<launch>
+
+   <master auto="start"/>
+ <!-- Run the map server --> 
+    <!--node name="map_server" pkg="map_server" type="map_server" args="$(find pmv_2dnav)/maps/map1/map1.pgm my_map_resolution"/-->
+
+    <node name="map_node" pkg="map_server" type="map_server" args="$(find pmv_2dnav)/maps/map1/map1.yaml" respawn="false">
+        <param name="frame_id" value="/odom" />
+    </node>
+
+ <!--- Run AMCL --> 
+    <include file="$(find  pmv_2dnav)/launch/amcl.launch" />
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find pmv_2dnav)/config/movebase/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find pmv_2dnav)/config/movebase/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find pmv_2dnav)/config/movebase/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find pmv_2dnav)/config/movebase/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find pmv_2dnav)/config/movebase/base_local_planner_params.yaml" command="load" />
+ </node>
+</launch> 

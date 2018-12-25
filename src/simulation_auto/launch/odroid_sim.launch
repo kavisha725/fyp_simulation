@@ -1,0 +1,11 @@
+<launch>
+
+
+<include file="$(find rsv_balance_gazebo)/launch/simulation_pmv.launch"> </include> <!--Launch the robot-->
+<include file="$(find simulation_auto)/launch/fake_camera_info.launch"> </include> <!--depth_camera_info publish-->
+<include file="$(find depthimage_to_laserscan)/launch/laserscan.launch"> </include> <!--get scan-->
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find simulation_auto)/config/rviz/amcl_config.rviz"/>
+
+
+</launch>
