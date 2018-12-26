@@ -10,7 +10,7 @@ available [RoboSavvy](http://wiki.ros.org/Robots/RoboSavvy-Balance) platform was
 contained the 3D model of the platform and the ability to give
 velocity commands as a ROS message. This model was
 modified in order to match the design of the personal
-mobility system. A Kinect sensor along with a plugin for
+mobility system. A Kinect sensor along with a [plugin](http://gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros) for
 generating sensor readings was added by modifying the
 xacro files of the Robosavvy package.
 This set up behaves exactly as the personal mobility system
@@ -46,12 +46,12 @@ order to help localize the robot.
   source ./devel/setup.bash
   ```
 
-  To launch gmapping with a test environment use:  
+  To launch [gmapping](http://wiki.ros.org/gmapping) with the above test environment use:  
   ```
   roslaunch simulation_auto all_gmapping.launch
   ```
   
-   To launch full move_base and amcl use:  
+   To launch [amcl](http://wiki.ros.org/amcl) and [move_base](http://wiki.ros.org/move_base) with pre-built map:  
   ```
   roslaunch simulation_auto all_amcl.launch
   ```
@@ -60,5 +60,14 @@ order to help localize the robot.
 
 ## Customization
 
-* Add custom gazebo world to fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/simulation_pmv.launch
-* Add custom robot to fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/include/spawn_robot.launch
+* Add custom gazebo world:
+	*fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/simulation_pmv.launch
+* Add custom robot:
+	*fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/include/spawn_robot.launch
+* Parameters of the ROS navigation stack:
+	*gmapping
+		*fyp_simulation/src/simulation_auto/launch/gmapping.launch
+	*amcl
+		*fyp_simulation/src/pmv_2dnav/launch/amcl.launch
+	*move_base
+		*fyp_simulation/src/pmv_2dnav/config/movebase
