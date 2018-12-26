@@ -61,13 +61,13 @@ order to help localize the robot.
 ## Customization
 
 * Add custom gazebo world:
-	*fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/simulation_pmv.launch
+	* fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/simulation_pmv.launch
 * Add custom robot:
-	*fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/include/spawn_robot.launch
+	* fyp_simulation/src/rsv_balance_simulator/rsv_balance_gazebo/launch/include/spawn_robot.launch
 * Parameters of the ROS navigation stack:
-	*gmapping
-		*fyp_simulation/src/simulation_auto/launch/gmapping.launch
-	*amcl
-		*fyp_simulation/src/pmv_2dnav/launch/amcl.launch
-	*move_base
-		*fyp_simulation/src/pmv_2dnav/config/movebase
+	* gmapping
+		* fyp_simulation/src/simulation_auto/launch/gmapping.launch
+	* amcl
+		* fyp_simulation/src/pmv_2dnav/launch/amcl.launch
+	* move_base
+		* fyp_simulation/src/pmv_2dnav/config/movebase/
