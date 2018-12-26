@@ -1,12 +1,12 @@
 # fyp_simulation
-Gazebo ROS packages for the simulation used in our final year project. 
+Gazebo ROS packages for the simulation used in our final year project. The simulation was tested on Ubuntu 16.04LTS and ROS Kinetic.
 
 ---
 
 ## Robot Platform
 
 For the two-wheeled self-balancing platform, the openly
-available [Robosavvy](http://wiki.ros.org/Robots/RoboSavvy-Balance) platform was used. This platform
+available [RoboSavvy](http://wiki.ros.org/Robots/RoboSavvy-Balance) platform was used. This platform
 contained the 3D model of the platform and the ability to give
 velocity commands as a ROS message. This model was
 modified in order to match the design of the personal
@@ -16,7 +16,7 @@ xacro files of the Robosavvy package.
 This set up behaves exactly as the personal mobility system
 should when viewed in terms of the ROS control system. It
 provides an abstraction which takes ROS velocity commands (in the form of vx and
-vtheta) as inputs and provides Kinect sensor data (from a platform with variable pitch)
+vtheta) as inputs and provides odometry information and Kinect sensor data (from a platform with variable pitch)
 as output.
 
 ![](https://raw.githubusercontent.com/kavisha725/fyp_simulation/master/pics/fyp_sim_robot.png) 
