@@ -20,9 +20,13 @@ class navGoals {
 
     void getGoalCallback(const geometry_msgs::Point::ConstPtr& app_goal)
     {
-      
-      move_x = app_goal->x;
-      move_y = app_goal->y;
+      int map_size = 480;//change accordingly
+      int app_size = 1280;
+      float resolution = 0.05;
+
+      move_x = int(((app_size/2)-app_goal->y)*map_size*resolution/app_size);
+      move_y = int(((app_size/2)-app_goal->x)*map_size*resolution/app_size);
+      //move_y = app_goal->y;
       move_base_msgs::MoveBaseGoal goal;
       
       //wait for the action server to come up
